@@ -38,36 +38,25 @@ function getInsult(message, user) {
 }
 
 /**
- * Writes an insult to the chat
+ * Replies to a message
+ * @param {string} text - The text to send
  * @param {object} message - The message to reply to
- * @param {object=} user - The user to insult
  */
-function writeInsult(message, user) {
-  user = user || message.from;
-  bot.sendMessage(message.chat.id, getInsult(message, user), {'reply_to_message_id': message.message_id});
+function replyText(text, message) {
+  bot.sendMessage(message.chat.id, text, {'reply_to_message_id': message.message_id});
 }
-
-bot.onText(/@CoredumpFlameBot/, function(message, match) {
-  writeInsult(message);
-});
 
 bot.on('message', function(message) {
   if (message.new_chat_participant) {
-    writeInsult(message, message.new_chat_participant);
-  }
-
-  // search for monkey island matches
-  if (message.text) {
+    replyText(getInsult(message, message.new_chat_participant), message);
+  } else if (message.text) {
     var monkey_island_match = monkey_island.search(message.text);
     if (monkey_island_match) {
-      bot.sendMessage(message.chat.id, monkey_island_match, {'reply_to_message_id': message.message_id});
-      return;
+      replyText(monkey_island_match, message);
+    } else if (/CoredumpFlameBot/.test(message.text) || Math.random() * 30 < 1) {
+      replyText(getInsult(message, message.from), message);
     }
+  } else if (Math.random() * 30 < 1) {
+    replyText(getInsult(message, message.from), message);
   }
-
-  if (Math.random() * 30 > 1 || message.text && /@CoredumpFlameBot/.test(message.text)) {
-    return;
-  }
-
-  writeInsult(message);
 });
