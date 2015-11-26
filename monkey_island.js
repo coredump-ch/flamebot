@@ -66,7 +66,7 @@ var insults = new Map([
       "Jeder hier kennt dich doch als unerfahrenen Dummkopf!",
       ["Zu Schade, daß DICH überhaupt niemand kennt."]
     ],
-    
+
     //  The Curse of Monkey Island
     [
       "Bis jetzt wurde jeder Gegner von mir eliminiert!",
@@ -162,6 +162,82 @@ var insults = new Map([
       "Mein Mienenspiel zeigt dir meine Mißbilligung!",
       ["Für dein Gesicht bekommst du 'ne Begnadigung!",
       "Mein Antlitz zeugt von edler Abstammung!"]
+    ],
+
+    // Escape from Monkey Island
+    [
+      "Memmen wie dich vernasch ich zum Frühstück",
+      ["Dann ist alles klar, du bist deshalb so dick"]
+    ],
+
+    [
+      "Viele Menschen sagen meine Kraft ist unglaublich",
+      ["unglaublich erbärmlich sag ich"]
+    ],
+
+    [
+      "Alle Welt fürchtet sich vor meiner Faust",
+      ["Wobei mir vor allem dein Atem kraust"]
+    ],
+
+    [
+      "Ich habe Muskeln an Stellen von denen du nichst ahnst",
+      ["Zu schade, dass keine davon in deinem Arm sind"]
+    ],
+
+    [
+      "Ich habe mit diesem Arm schon Kraken bezwungen",
+      ["Na Babys wohl auch, der Witz ist gelungen"]
+    ],
+
+    [
+      "Ich kenne Läuse mit stärkeren Muskeln",
+      ["Behalt sie für dich, sonst bekomm ich noch Pusteln"]
+    ],
+
+    [
+      "Gib auf oder ich zerquetsch dich wie eine Mücke",
+      ["Wenn ich mit dir fertig bin, brauchst du ne' Krücke"]
+    ],
+
+    [
+      "Meine Großmutter hat mehr Kraft als du Wicht",
+      ["Dafür hab ich in der Hand nicht die Gicht"]
+    ],
+
+    [
+      "Nach diesem Spiel trägst du die Hand in Gips",
+      ["das sind große Worte für einen Mann ohne Grips"]
+    ],
+
+    [
+      "Hey, schau mal da drüben",
+      ["Ja, Ja, ich weiß, ein Dreiköpfiger Affe"]
+    ],
+
+    [
+      "Du bist das hässlichste Wesen dass ich jemals sah",
+      ["biss auf deine Frau, das ist klar"]
+    ],
+
+    [
+      "Ich zerreiße deine Hand in Millionen Fetzen",
+      ["Ich wusste gar nicht, dass du soweit zählen kannst"]
+    ],
+
+    [
+      "Ich werde deine Knochen zu Brei zermalmen",
+      ["Ich werde mich wehren, bis deine Kriffel qualmen"]
+    ],
+
+    [
+      "Sehe ich da Spuren der Angst in deinem Gesicht",
+      ["Ha, Ha, das ist ein Lachen, du schwächlicher Wicht"]
+    ],
+
+    [
+      "Gibt es eine größere Memme als dich",
+      ["Sie sitzt mir Gegenüber, was fragst du mich"]
     ],
 ]);
 
