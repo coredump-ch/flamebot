@@ -32,7 +32,24 @@ function getInsult(message, user) {
     'So you’re going to die... again... wonderful!',
     'Sitting in a dark room with a lava lamp and thinking you’re in heaven?',
     'No no, I’m not questioning your professionalism, it’s just that I don’ even the meaning -',
-    'Is it over? ...Hello? ...Did I win?'
+    'Is it over? ...Hello? ...Did I win?',
+    'Aha, mal wieder in der Nase gebohrt, wie?',
+    'Willst du mich mit deinem Geschwafel ermüden?',
+    'Zu Schade, dass DAS überhaupt niemanden interessiert.',
+    'Sollt’ ich in deiner Nähe sterben, möcht’ ich, daß man mich desinfiziert!',
+    'Bist du das? Es riecht hier so nach Jauche und Dung!',
+    'Ist der Blick in den Spiegel für Dich jeden Tag nicht eine Erniedrigung?',
+    'Du hast soviel Sexappeal wie ein Croupier.',
+    'Dein Geplänkel kommt nicht richtig in Schwung!',
+    'Wurdest du damals von einem Schwein adoptiert?',
+    'Das ich nicht lache, ' + u,
+    'Deine Mutter trägt ein Toupet.',
+    'Dein Geruch allein reicht aus und ich wär’ kollabiert!',
+    'Ich glaub’, es gibt für dich noch eine Stelle beim Varieté.',
+    'Für dein Gesicht bekommst du ’ne Begnadigung!',
+    'unglaublich erbärmlich sag ich',
+    'das sind große Worte für ' + u + ' ohne Grips',
+    'Dini Mueter.',
   ];
   return insults[Math.floor(Math.random() * insults.length)];
 }
