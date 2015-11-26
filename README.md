@@ -5,7 +5,7 @@ A Telegram bot that flames everything!
 # Developing
 
  * Run `npm install` to install dependencies.
- * Copy config.example.js to config.js and add a token
+ * Copy `config.example.js` to `config.js` and add a token
 
 # Run
 
