@@ -1,4 +1,4 @@
-var FuzzySet = require('fuzzyset.js')
+var FuzzySet = require('fuzzyset.js');
 
 var insults = [
     // The Secret of Monkey Island
@@ -49,7 +49,6 @@ module.exports.search = function(query) {
     var score = res[0][0];
     if (score > 0.5) {
         var res = res[0][1];
-        var answer;
         for (var i=0; i<insults.length; ++i) {
             if (insults[i]===res) {
                 return counters[i];
