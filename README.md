@@ -1,6 +1,7 @@
 # Flame Bot
 
-A Telegram bot that flames everything!
+A Telegram bot that flames everything! Available as
+[@CoredumpFlameBot](https://telegram.me/CoredumpFlameBot)
 
 # Developing
 
