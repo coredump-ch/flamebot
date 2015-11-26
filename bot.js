@@ -4,8 +4,14 @@ var TelegramBot = require('node-telegram-bot-api');
 
 var bot = new TelegramBot(config.token, {polling: true});
 
-function getInsult(message) {
-  var u = message.from.first_name;
+/**
+ * Returns an insult
+ * @param {object} message - The message to reply to
+ * @param {object} user - The user to insult
+ * @returns {string} The insult
+ */
+function getInsult(message, user) {
+  var u = user.first_name;
   var insults = [
     'You fight like a dairy farmer.',
     'You fight like a cow.',
@@ -30,8 +36,28 @@ function getInsult(message) {
   return insults[Math.floor(Math.random() * insults.length)];
 }
 
+/**
+ * Writes an insult to the chat
+ * @param {object} message - The message to reply to
+ * @param {object=} user - The user to insult
+ */
+function writeInsult(message, user) {
+  user = user || message.from;
+  bot.sendMessage(message.chat.id, getInsult(message, user), {'reply_to_message_id': message.message_id});
+}
+
 bot.onText(/@CoredumpFlameBot/, function(message, match) {
-  var messageId = message.message_id;
-  var chatId = message.chat.id;
-  bot.sendMessage(chatId, getInsult(message), {'reply_to_message_id': messageId});
+  writeInsult(message);
+});
+
+bot.on('message', function(message) {
+  if (message.new_chat_participant) {
+    writeInsult(message, message.new_chat_participant);
+  }
+  
+  if (Math.random() * 30 > 1 || message.text && /@CoredumpFlameBot/.test(message.text)) {
+    return;
+  }
+  
+  writeInsult(message);
 });
