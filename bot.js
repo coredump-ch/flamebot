@@ -1,4 +1,5 @@
 var config = require('./config.js');
+var monkey_island = require('./monkey_island.js');
 
 var TelegramBot = require('node-telegram-bot-api');
 
@@ -54,10 +55,19 @@ bot.on('message', function(message) {
   if (message.new_chat_participant) {
     writeInsult(message, message.new_chat_participant);
   }
-  
+
+  // search for monkey island matches
+  if (message.text) {
+    var monkey_island_match = monkey_island.search(message.text);
+    if (monkey_island_match) {
+      bot.sendMessage(message.chat.id, monkey_island_match, {'reply_to_message_id': message.message_id});
+      return;
+    }
+  }
+
   if (Math.random() * 30 > 1 || message.text && /@CoredumpFlameBot/.test(message.text)) {
     return;
   }
-  
+
   writeInsult(message);
 });
