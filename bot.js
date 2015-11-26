@@ -11,9 +11,8 @@ var bot = new TelegramBot(config.token, {polling: true});
  * @param {object} user - The user to insult
  * @returns {string} The insult
  */
-function getInsult(message, user) {
-  var u = user.first_name;
-  var insults = [
+ var getInsult = (function() {
+   var insults = [
     'You fight like a dairy farmer.',
     'You fight like a cow.',
     'So you want to be a pirate, eh? You look more like a flooring inspector.',
@@ -34,8 +33,12 @@ function getInsult(message, user) {
     'No no, I’m not questioning your professionalism, it’s just that I don’ even the meaning -',
     'Is it over? ...Hello? ...Did I win?'
   ];
-  return insults[Math.floor(Math.random() * insults.length)];
-}
+  return function(message, user) {
+    var u = user.first_name;
+    
+    return insults[Math.floor(Math.random() * insults.length)];
+  }
+})();
 
 /**
  * Writes an insult to the chat
