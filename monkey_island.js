@@ -40,17 +40,18 @@ var counters = [
     "Zu Schade, daß DICH überhaupt niemand kennt.",
 ];
 
+var fuzzy = FuzzySet(insults);
+
 module.exports.search = function(query) {
-    var fuzzy = FuzzySet(insults);
-    var res = fuzzy.get(query);
-    if (!res) {
+    var match = fuzzy.get(query);
+    if (!match) {
         return;
     }
-    var score = res[0][0];
+    var score = match[0][0];
     if (score > 0.5) {
-        var res = res[0][1];
+        var result = match[0][1];
         for (var i=0; i<insults.length; ++i) {
-            if (insults[i]===res) {
+            if (insults[i]===result) {
                 return counters[i];
             }
         }
