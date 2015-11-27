@@ -70,7 +70,7 @@ bot.on('message', function(message) {
     var monkey_island_match = monkey_island.search(message.text);
     if (monkey_island_match) {
       replyText(monkey_island_match, message);
-    } else if (message.text.search(/mue?tt?(er|i)/) != -1) {
+    } else if (message.text.search(/mue?tt?(er|i)/i) != -1) {
       replyText('HANI MUETTER GHÖRT??!', message);
     } else if (/CoredumpFlameBot/.test(message.text) || Math.random() * 30 < 1) {
       replyText(getInsult(message, message.from), message);
