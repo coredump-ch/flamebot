@@ -84,7 +84,7 @@ function replyText(text, message) {
   bot.sendMessage(message.chat.id, text, {'reply_to_message_id': message.message_id});
 }
 
-bot.on('message', function(message) {
+function handleMessage(message) {
   if (message.new_chat_participant) {
     replyText(getInsult(message, message.new_chat_participant), message);
   } else if (message.text) {
@@ -99,4 +99,8 @@ bot.on('message', function(message) {
   } else if (Math.random() * 30 < 1) {
     replyText(getInsult(message, message.from), message);
   }
+}
+
+bot.on('message', function(message) {
+  handleMessage(message);
 });
