@@ -75,6 +75,11 @@ function getInsult(message, user) {
   return insults[Math.floor(Math.random() * insults.length)];
 }
 
+var bot_name = undefined;
+bot.getMe().done(function(res){
+  bot_name = res.username;
+});
+
 /**
  * Replies to a message
  * @param {string} text - The text to send
@@ -84,7 +89,13 @@ function replyText(text, message) {
   bot.sendMessage(message.chat.id, text, {'reply_to_message_id': message.message_id});
 }
 
-bot.on('message', function(message) {
+function handleMessage(message) {
+  if (bot_name===undefined) {
+    setTimeout(function(){
+      handleMessage(message);
+    }, 3000);
+    return;
+  }
   if (message.new_chat_participant) {
     replyText(getInsult(message, message.new_chat_participant), message);
   } else if (message.text) {
@@ -93,10 +104,14 @@ bot.on('message', function(message) {
       replyText(monkey_island_match, message);
     } else if (/mue?tt?(er|i)/i.test(message.text)) {
       replyText('HANI MUETTER GHÖRT??!', message);
-    } else if (/CoredumpFlameBot/.test(message.text) || Math.random() * 30 < 1) {
+    } else if (RegExp(bot_name).test(message.text) || Math.random() * 30 < 1) {
       replyText(getInsult(message, message.from), message);
     }
   } else if (Math.random() * 30 < 1) {
     replyText(getInsult(message, message.from), message);
   }
+}
+
+bot.on('message', function(message) {
+  handleMessage(message);
 });
