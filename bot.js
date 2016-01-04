@@ -68,9 +68,14 @@ function getInsult(message, user) {
     'Meine Großmutter kann besser Rust als du Wicht, ' + u,
     'Du bist das hässlichste Wesen dass ich jemals sah, ' + u,
     'Gibt es eine größere Memme als dich, ' + u + '?',
-    
+
     // Not inspired by monkey island.
     'Dini Mueter.',
+
+    // some nice Unicode art
+    '凸(-_-)凸',
+    '╭∩╮(-_-)╭∩╮',
+    '(╯°□°）╯︵ ┻━┻',
   ];
   return insults[Math.floor(Math.random() * insults.length)];
 }
