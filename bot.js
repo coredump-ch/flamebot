@@ -127,7 +127,7 @@ function handleMessage(message) {
   }
   
   if (message.new_chat_participant) {
-    replyText(getInsult(message, message.new_chat_participant), message);
+    replyInsult(message, message.new_chat_participant);
   } else if (message.text) {
     var monkey_island_match = monkey_island.search(message.text);
     if (monkey_island_match) {
