@@ -168,78 +168,78 @@ var insults = new Map([
 
   // Escape from Monkey Island
   [
-    'Memmen wie dich vernasch ich zum Frühstück',
-    ['Dann ist alles klar, du bist deshalb so dick']
+    'Memmen wie dich vernasch’ ich zum Frühstück.',
+    ['Dann ist alles klar, du bist deshalb so dick!']
   ],
 
   [
-    'Viele Menschen sagen meine Kraft ist unglaublich',
-    ['unglaublich erbärmlich sag ich']
+    'Viele Menschen sagen, meine Kraft ist unglaublich.',
+    ['Unglaublich erbärmlich, das sag’ ab jetzt ich!']
   ],
 
   [
-    'Alle Welt fürchtet sich vor meiner Faust',
-    ['Wobei mir vor allem dein Atem kraust']
+    'Alle Welt fürchtet die Kraft meiner Faust.',
+    ['Wobei mir vor allem vor deinem Atem graust.']
   ],
 
   [
-    'Ich habe Muskeln an Stellen von denen du nichst ahnst',
-    ['Zu schade, dass keine davon in deinem Arm sind']
+    'Ich habe Muskeln an Stellen von denen du nichst ahnst.',
+    ['Zu schade, dass keiner davon in deinen Armen ist.']
   ],
 
   [
-    'Ich habe mit diesem Arm schon Kraken bezwungen',
-    ['Na Babys wohl auch, der Witz ist gelungen']
+    'Ich hab’ mit diesen Armen schon Kraken bezwungen.',
+    ['Und Babys wohl auch, na, der Witz ist gelungen.']
   ],
 
   [
-    'Ich kenne Läuse mit stärkeren Muskeln',
-    ['Behalt sie für dich, sonst bekomm ich noch Pusteln']
+    'Ich kenne Läuse mit stärkeren Muskeln.',
+    ['Behalt sie für dich, sonst bekomm’ ich noch Pusteln.']
   ],
 
   [
-    'Gib auf oder ich zerquetsch dich wie eine Mücke',
-    ['Wenn ich mit dir fertig bin, brauchst du ne’ Krücke']
+    'Gib auf oder ich zerquetsch’ dich wie eine lästige Mücke.',
+    ['Wenn ich mit dir fertig bin, brauchst du ’ne Krücke!']
   ],
 
   [
-    'Meine Großmutter hat mehr Kraft als du Wicht',
-    ['Dafür hab ich in der Hand nicht die Gicht']
+    'Meine Großmutter hat mehr Kraft als du Wicht!',
+    ['Dafür hab’ ich in der Hand nicht die Gicht!']
   ],
 
   [
-    'Nach diesem Spiel trägst du die Hand in Gips',
-    ['das sind große Worte für einen Mann ohne Grips']
+    'Nach diesem Spiel trägst du den Arm in Gips.',
+    ['Das sind große Worte für ’nen Kerl ohne Grips!']
   ],
 
   [
-    'Hey, schau mal da drüben',
-    ['Ja, Ja, ich weiß, ein Dreiköpfiger Affe']
+    'Hey, schau mal da drüben!',
+    ['Ja, ja, ich weiß, ein dreiköpfiger Affe!']
   ],
 
   [
-    'Du bist das hässlichste Wesen dass ich jemals sah',
-    ['biss auf deine Frau, das ist klar']
+    'Du bist das hässlichste Wesen, das ich jemals sah',
+    ['Mit Ausnahme von deiner Frau, so viel ist klar!']
   ],
 
   [
-    'Ich zerreiße deine Hand in Millionen Fetzen',
-    ['Ich wusste gar nicht, dass du soweit zählen kannst']
+    'Ich zerreiße deine Hand in eine Million Fetzen.',
+    ['Ich wusste gar nicht, dass du so weit zählen kannst.']
   ],
 
   [
-    'Ich werde deine Knochen zu Brei zermalmen',
-    ['Ich werde mich wehren, bis deine Kriffel qualmen']
+    'Ich werde deine Knochen zu Brei zermalmen.',
+    ['Ich werde mich wehren, bis die Griffel dir qualmen!']
   ],
 
   [
-    'Sehe ich da Spuren der Angst in deinem Gesicht',
-    ['Ha, Ha, das ist ein Lachen, du schwächlicher Wicht']
+    'Sehe ich da Spuren der Angst in deinem Gesicht?',
+    ['Ha, ha! Das ist ein Lachen, du schwächlicher Wicht!']
   ],
 
   [
-    'Gibt es eine größere Memme als dich',
-    ['Sie sitzt mir Gegenüber, was fragst du mich']
+    'Gibt es auf dieser Welt ’ne größere Memme als dich?',
+    ['Sie sitzt mir gegenüber, also was fragst du mich?']
   ],
 ]);
 
