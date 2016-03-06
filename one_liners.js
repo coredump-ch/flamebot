@@ -147,6 +147,8 @@ var stickers = [
   'BQADAgADYgEAAvR7GQABNgdi7-hwi4gC', // ✋ Hedgehog Middlefinger
   'BQADBAADOQADmu78Ap0s66P75zWsAg', // Toni Brunner 😮
   'BQADBAADRwADmu78AklGZ2FcPSkKAg', // Ueli Maurer 😀
+  'BQADBAADrQADEhKdAAG75Oi8qTO6fwI', // 👐 Chabis
+  'BQADBAADwQADEhKdAAFk3LSH1pscvgI', // 😈 Verzells am Chääs
 ];
 
 /**
