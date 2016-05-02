@@ -1,8 +1,10 @@
 'use strict';
 
-var FuzzySet = require('fuzzyset.js');
+const FuzzySet = require('fuzzyset.js');
 
-var insults = new Map([
+// jscs:disable requireTrailingComma
+const insults = new Map([
+
   // The Secret of Monkey Island
   [
     'Du kämpfst wie ein dummer Bauer.',
@@ -243,23 +245,26 @@ var insults = new Map([
   ],
 ]);
 
-var fuzzy = FuzzySet([...insults.keys()]);
+// jscs:enable requireTrailingComma
+
+const fuzzy = FuzzySet([...insults.keys()]);
 
 /**
  * Checks if the query is found and returns an according reply
  *
  * @param {string} query - A query text
- * @returns {?string} A reply
+ * @returns {(string|undefined)} A reply or undefined if query not found
  */
-module.exports.search = function(query) {
-  var match = fuzzy.get(query);
+module.exports.search = function (query) {
+  let match = fuzzy.get(query);
   if (!match) {
-    return null;
+    return;
   }
-  var score = match[0][0];
+
+  let score = match[0][0];
   if (score > 0.5) {
-    var result = match[0][1];
-    var possibleCounters = insults.get(result);
+    let result = match[0][1];
+    let possibleCounters = insults.get(result);
     return possibleCounters[Math.floor(Math.random() * possibleCounters.length)];
   }
 };

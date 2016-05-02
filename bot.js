@@ -1,12 +1,19 @@
 'use strict';
 
-var config = require('./config.js');
-var oneLiners = require('./one_liners.js');
-var replies = require('./replies.js');
+const config = require('./config.js');
+const oneLiners = require('./one_liners.js');
+const replies = require('./replies.js');
 
-var TelegramBot = require('node-telegram-bot-api');
+const TelegramBot = require('node-telegram-bot-api');
+const bot = new TelegramBot(config.token, { polling: true });
 
-var bot = new TelegramBot(config.token, {polling: true});
+const flameRate = 0.02;
+const stickerRate = 0.05;
+let botName;
+
+bot.getMe().done((res) => {
+  botName = res.username;
+});
 
 /**
  * Replies with an insult
@@ -15,19 +22,14 @@ var bot = new TelegramBot(config.token, {polling: true});
  * @param {object} user - The user to insult
  */
 function replyInsult(message, user) {
-  if (Math.random() * 20 > 1) {
-    let insult = oneLiners.getRandomInsult(user.first_name);
+  if (Math.random() > stickerRate) {
+    const insult = oneLiners.getRandomInsult(user.first_name);
     replyText(insult, message);
   } else {
-    var sticker = oneLiners.getRandomSticker();
-    bot.sendSticker(message.chat.id, sticker, {reply_to_message_id: message.message_id});
+    const sticker = oneLiners.getRandomSticker();
+    bot.sendSticker(message.chat.id, sticker, { reply_to_message_id: message.message_id });
   }
 }
-
-var botName;
-bot.getMe().done(function(res) {
-  botName = res.username;
-});
 
 /**
  * Replies text to a message
@@ -36,7 +38,7 @@ bot.getMe().done(function(res) {
  * @param {object} message - The message to reply to
  */
 function replyText(text, message) {
-  bot.sendMessage(message.chat.id, text, {reply_to_message_id: message.message_id});
+  bot.sendMessage(message.chat.id, text, { reply_to_message_id: message.message_id });
 }
 
 /**
@@ -46,9 +48,7 @@ function replyText(text, message) {
  */
 function handleMessage(message) {
   if (botName === undefined) {
-    setTimeout(function() {
-      handleMessage(message);
-    }, 3000);
+    setTimeout(handleMessage.bind(undefined, message), 3000);
 
     return;
   }
@@ -61,19 +61,19 @@ function handleMessage(message) {
   if (message.new_chat_participant) {
     replyInsult(message, message.new_chat_participant);
   } else if (message.text) {
-    var repliesMatch = replies.search(message.text);
+    const repliesMatch = replies.search(message.text);
     if (repliesMatch) {
       replyText(repliesMatch, message);
     } else if (/mue?tt?(er|i)/i.test(message.text)) {
       replyText('HANI MUETTER GHÖRT??!', message);
-    } else if (new RegExp(botName, 'i').test(message.text) || Math.random() * 50 < 1) {
+    } else if (new RegExp(botName, 'i').test(message.text) || Math.random() < flameRate) {
       replyInsult(message, message.from);
     }
-  } else if (Math.random() * 50 < 1) {
+  } else if (Math.random() < flameRate) {
     replyInsult(message, message.from);
   }
 }
 
-bot.on('message', function(message) {
+bot.on('message', (message) => {
   handleMessage(message);
 });

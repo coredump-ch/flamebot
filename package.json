@@ -4,8 +4,7 @@
     "node-telegram-bot-api": "^0.20.1"
   },
   "jscsConfig": {
-    "preset": "google",
-    "requireCamelCaseOrUpperCaseIdentifiers": { "ignoreProperties": true },
+    "preset": "airbnb",
     "maximumLineLength": null
   }
 }

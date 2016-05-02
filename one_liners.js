@@ -1,6 +1,7 @@
 'use strict';
 
-var insults = [
+const insults = [
+
   // Inspired by Monkey island
   'You fight like a dairy farmer, %u%.',
   'So you want to be a pirate, %u%, eh? You look more like a flooring inspector.',
@@ -134,7 +135,7 @@ var insults = [
   '(╯°□°）╯︵ ┻━┻',
 ];
 
-var stickers = [
+const stickers = [
   'BQADBAADIAADyIsGAAGeqFpovvSWiwI', // Julius Caesar 👎
   'BQADBAADPwADyIsGAAFyYVwK5nqWFQI', // Elvis Presley 😂
   'BQADBAADLQADyIsGAAE_-arlvGeRjgI', // Jay Hawkins 😲
@@ -149,6 +150,7 @@ var stickers = [
   'BQADBAADRwADmu78AklGZ2FcPSkKAg', // Ueli Maurer 😀
   'BQADBAADrQADEhKdAAG75Oi8qTO6fwI', // 👐 Chabis
   'BQADBAADwQADEhKdAAFk3LSH1pscvgI', // 😈 Verzells am Chääs
+  'BQADBAADNBAAAiGJygABwh0LudHRUtMC', // Verzell kein Salat
 ];
 
 /**
@@ -157,9 +159,9 @@ var stickers = [
  * @param {string} userName - The user's name who should be insulted
  * @returns {string} A random insult
  */
-exports.getRandomInsult = function(userName) {
-  var insult = insults[Math.floor(Math.random() * insults.length)];
-  return insult.replace('%u%', userName);
+exports.getRandomInsult = function (userName) {
+  const insult = insults[Math.floor(Math.random() * insults.length)];
+  return insult.replace(/%u%/g, userName);
 };
 
 /**
@@ -167,6 +169,7 @@ exports.getRandomInsult = function(userName) {
  *
  * @returns {string} The sticker's telegram file_id
  */
-exports.getRandomSticker = function() {
+exports.getRandomSticker = function () {
   return stickers[Math.floor(Math.random() * stickers.length)];
 };
+
