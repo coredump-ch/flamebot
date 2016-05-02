@@ -134,10 +134,10 @@ function handleMessage(message) {
       replyText(monkey_island_match, message);
     } else if (/mue?tt?(er|i)/i.test(message.text)) {
       replyText('HANI MUETTER GHÖRT??!', message);
-    } else if (RegExp(bot_name).test(message.text) || Math.random() * 30 < 1) {
+    } else if (RegExp(bot_name).test(message.text) || Math.random() * 50 < 1) {
       replyInsult(message, message.from);
     }
-  } else if (Math.random() * 30 < 1) {
+  } else if (Math.random() * 50 < 1) {
     replyInsult(message, message.from);
   }
 }
