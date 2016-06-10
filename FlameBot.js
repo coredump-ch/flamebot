@@ -38,20 +38,22 @@ class FlameBot {
      * @type {Object}
      */
     this.telegram = telegram;
+
+    /**
+     * The bots username as a Promise
+     * @type {Promise.<string>}
+     */
+    this.usernamePromise = new Promise((resolve, reject) => {
+      telegram.getMe().then((me) => {
+        resolve(me.username);
+      }, reject);
+    });
   }
 
   /**
-   * Sets the handlers to start the bot
+   * Sets the handler to listen to messages
    */
   start() {
-    this.telegram.getMe().then((res) => {
-      /**
-       * The bot’s name
-       * @type {string}
-       */
-      this.name = res.username;
-    });
-
     this.telegram.on('message', (message) => {
       this.handleMessage(message);
     });
@@ -60,8 +62,8 @@ class FlameBot {
   /**
    * Replies with an insult
    *
-   * @param {object} message - The message to reply to
-   * @param {object} user - The user to insult
+   * @param {Object} message - The message to reply to
+   * @param {Object} user - The user to insult
    */
   replyInsult(message, user) {
     if (Math.random() > this.stickerRate) {
@@ -77,7 +79,7 @@ class FlameBot {
    * Replies text to a message
    *
    * @param {string} text - The text to send
-   * @param {object} message - The message to reply to
+   * @param {Object} message - The message to reply to
    */
   replyText(text, message) {
     this.telegram.sendMessage(message.chat.id, text, { reply_to_message_id: message.message_id });
@@ -86,15 +88,9 @@ class FlameBot {
   /**
    * Handles new messages and replies with insults if necessary
    *
-   * @param {object} message - The message to reply to
+   * @param {Object} message - The message to reply to
    */
   handleMessage(message) {
-    if (this.name === undefined) {
-      setTimeout(this.handleMessage.bind(undefined, message), 3000);
-
-      return;
-    }
-
     // To find a sticker id: Send it to the bot in private chat
     if (message.chat.type === 'private' && message.sticker) {
       this.replyText('Sticker file_id: ' + message.sticker.file_id, message);
@@ -108,8 +104,12 @@ class FlameBot {
         this.replyText(repliesMatch, message);
       } else if (/mue?tt?(er|i)/i.test(message.text)) {
         this.replyText('HANI MUETTER GHÖRT??!', message);
-      } else if (new RegExp(this.name, 'i').test(message.text) || Math.random() < this.flameRate) {
-        this.replyInsult(message, message.from);
+      } else {
+        this.usernamePromise.then((username) => {
+          if (new RegExp(username, 'i').test(message.text) || Math.random() < this.flameRate) {
+            this.replyInsult(message, message.from);
+          }
+        });
       }
     } else if (Math.random() < this.flameRate) {
       this.replyInsult(message, message.from);
