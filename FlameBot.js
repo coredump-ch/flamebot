@@ -1,5 +1,7 @@
 'use strict';
 
+const Sticker = require('./Sticker.js');
+
 /**
  * The most polite bot in the world
  */
@@ -7,22 +9,16 @@ class FlameBot {
   /**
    * Constructs the flame bot
    * @param {number} flameRate - The chance how often the bot flames back on a message (1 = 100 %)
-   * @param {number} stickerRate - The chance how often the bot replies with a sticker instead of a message (1 = 100 %)
    * @param {Object} oneLiners - The oneLiners dependency
    * @param {Object} replies - The replies dependency
    * @param {Object} telegram - The telegram bot API dependency
    */
-  constructor(flameRate, stickerRate, oneLiners, replies, telegram) {
+  constructor(flameRate, oneLiners, replies, telegram) {
     /**
      * The chance how often the bot flames back on a message (1 = 100 %)
      * @type {number}
      */
     this.flameRate = flameRate;
-    /**
-     * The chance how often the bot replies with a sticker instead of a message (1 = 100 %)
-     * @type {number}
-     */
-    this.stickerRate = stickerRate;
     /**
      * The oneLiners dependency
      * @type {Object}
@@ -65,24 +61,24 @@ class FlameBot {
    * @param {Object} message - The message to reply to
    * @param {Object} user - The user to insult
    */
-  replyInsult(message, user) {
-    if (Math.random() > this.stickerRate) {
-      const insult = this.oneLiners.getRandomInsult(user.first_name);
-      this.replyText(insult, message);
-    } else {
-      const sticker = this.oneLiners.getRandomSticker();
-      this.telegram.sendSticker(message.chat.id, sticker, { reply_to_message_id: message.message_id });
-    }
+  replyRandomInsult(message, user) {
+    const insult = this.oneLiners.getRandomInsult(user.first_name);
+    this.reply(insult, message);
   }
 
   /**
-   * Replies text to a message
+   * Replies to a message
    *
-   * @param {string} text - The text to send
+   * @param {(string|Sticker)} reply - The text or Sticker to send
    * @param {Object} message - The message to reply to
    */
-  replyText(text, message) {
-    this.telegram.sendMessage(message.chat.id, text, { reply_to_message_id: message.message_id });
+  reply(reply, message) {
+    if (reply instanceof Sticker) {
+      const stickerFileId = reply.fileId;
+      this.telegram.sendSticker(message.chat.id, stickerFileId, { reply_to_message_id: message.message_id });
+    } else {
+      this.telegram.sendMessage(message.chat.id, reply, { reply_to_message_id: message.message_id });
+    }
   }
 
   /**
@@ -93,26 +89,37 @@ class FlameBot {
   handleMessage(message) {
     // To find a sticker id: Send it to the bot in private chat
     if (message.chat.type === 'private' && message.sticker) {
-      this.replyText('Sticker file_id: ' + message.sticker.file_id, message);
+      this.reply('Sticker file_id: ' + message.sticker.file_id, message);
+      return;
     }
 
     if (message.new_chat_participant) {
-      this.replyInsult(message, message.new_chat_participant);
-    } else if (message.text) {
+      this.replyRandomInsult(message, message.new_chat_participant);
+      return;
+    }
+
+    if (message.text) {
       const repliesMatch = this.replies.search(message.text);
       if (repliesMatch) {
-        this.replyText(repliesMatch, message);
-      } else if (/mue?tt?(er|i)/i.test(message.text)) {
-        this.replyText('HANI MUETTER GHÖRT??!', message);
-      } else {
-        this.usernamePromise.then((username) => {
-          if (new RegExp(username, 'i').test(message.text) || Math.random() < this.flameRate) {
-            this.replyInsult(message, message.from);
-          }
-        });
+        this.reply(repliesMatch, message);
+        return;
       }
-    } else if (Math.random() < this.flameRate) {
-      this.replyInsult(message, message.from);
+
+      if (/mue?tt?(er|i)/i.test(message.text)) {
+        this.reply('HANI MUETTER GHÖRT??!', message);
+        return;
+      }
+
+      this.usernamePromise.then((username) => {
+        if (new RegExp(username, 'i').test(message.text)) {
+          this.replyRandomInsult(message, message.from);
+          return;
+        }
+      });
+    }
+
+    if (Math.random() < this.flameRate) {
+      this.replyRandomInsult(message, message.from);
     }
   }
 }

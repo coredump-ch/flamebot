@@ -1,5 +1,12 @@
 'use strict';
 
+const Sticker = require('./Sticker.js');
+
+/**
+ * Stickers and one liner text insults
+ * where '%u%' is the username
+ * @type {Array.<(string|Sticker)>}
+ */
 const insults = [
 
   // Inspired by Monkey island
@@ -133,43 +140,38 @@ const insults = [
   '凸(-_-)凸',
   '╭∩╮(-_-)╭∩╮',
   '(╯°□°）╯︵ ┻━┻',
-];
 
-const stickers = [
-  'BQADBAADIAADyIsGAAGeqFpovvSWiwI', // Julius Caesar 👎
-  'BQADBAADPwADyIsGAAFyYVwK5nqWFQI', // Elvis Presley 😂
-  'BQADBAADLQADyIsGAAE_-arlvGeRjgI', // Jay Hawkins 😲
-  'BQADBAADMAADyIsGAAHU8vIAAev_v-UC', // Dante Alighieri 😖
-  'BQADBAADFQADyIsGAAEO_vKI0MR5bAI', // Nikola Tesla 😔
-  'BQADAgAD5gAD9HsZAAE3KspwHpaxlwI', // 🐨
-  'BQADAgAD6gAD9HsZAAFDRbdAUmM_jQI', // 🐻 Facepalm
-  'BQADAgAD-AAD9HsZAAGMoglB6izVgwI', // 🐱 OMG
-  'BQADAgADQwEAAvR7GQABzeqCC-X7ZYQC', // 👀 Seal
-  'BQADAgADYgEAAvR7GQABNgdi7-hwi4gC', // ✋ Hedgehog Middlefinger
-  'BQADBAADOQADmu78Ap0s66P75zWsAg', // Toni Brunner 😮
-  'BQADBAADRwADmu78AklGZ2FcPSkKAg', // Ueli Maurer 😀
-  'BQADBAADrQADEhKdAAG75Oi8qTO6fwI', // 👐 Chabis
-  'BQADBAADwQADEhKdAAFk3LSH1pscvgI', // 😈 Verzells am Chääs
-  'BQADBAADNBAAAiGJygABwh0LudHRUtMC', // Verzell kein Salat
+  // stickers
+  new Sticker('BQADBAADIAADyIsGAAGeqFpovvSWiwI'), // Julius Caesar 👎
+  new Sticker('BQADBAADPwADyIsGAAFyYVwK5nqWFQI'), // Elvis Presley 😂
+  new Sticker('BQADBAADLQADyIsGAAE_-arlvGeRjgI'), // Jay Hawkins 😲
+  new Sticker('BQADBAADMAADyIsGAAHU8vIAAev_v-UC'), // Dante Alighieri 😖
+  new Sticker('BQADBAADFQADyIsGAAEO_vKI0MR5bAI'), // Nikola Tesla 😔
+  new Sticker('BQADAgAD5gAD9HsZAAE3KspwHpaxlwI'), // 🐨
+  new Sticker('BQADAgAD6gAD9HsZAAFDRbdAUmM_jQI'), // 🐻 Facepalm
+  new Sticker('BQADAgAD-AAD9HsZAAGMoglB6izVgwI'), // 🐱 OMG
+  new Sticker('BQADAgADQwEAAvR7GQABzeqCC-X7ZYQC'), // 👀 Seal
+  new Sticker('BQADAgADYgEAAvR7GQABNgdi7-hwi4gC'), // ✋ Hedgehog Middlefinger
+  new Sticker('BQADBAADOQADmu78Ap0s66P75zWsAg'), // Toni Brunner 😮
+  new Sticker('BQADBAADRwADmu78AklGZ2FcPSkKAg'), // Ueli Maurer 😀
+  new Sticker('BQADBAADrQADEhKdAAG75Oi8qTO6fwI'), // 👐 Chabis
+  new Sticker('BQADBAADwQADEhKdAAFk3LSH1pscvgI'), // 😈 Verzells am Chääs
+  new Sticker('BQADBAADNBAAAiGJygABwh0LudHRUtMC'), // 🍈 Verzell kein Salat
+  new Sticker('BQADBAAEAQAC7v60AAGL4yLsOE6XRgI'), // Team Rocket 😱
+  new Sticker('BQADBAADFwQAAt2mFgLQSdSrpKvPXwI'), // RBTV Nils 🖕
 ];
 
 /**
  * Returns a random insult
- *
  * @param {string} userName - The user's name who should be insulted
- * @returns {string} A random insult
+ * @returns {(string|Sticker)} A random insult text or sticker
  */
 exports.getRandomInsult = function (userName) {
   const insult = insults[Math.floor(Math.random() * insults.length)];
-  return insult.replace(/%u%/g, userName);
-};
+  if (insult instanceof Sticker) {
+    return insult;
+  }
 
-/**
- * Returns a random insulting sticker
- *
- * @returns {string} The sticker's telegram file_id
- */
-exports.getRandomSticker = function () {
-  return stickers[Math.floor(Math.random() * stickers.length)];
+  return insult.replace(/%u%/g, userName);
 };
 
