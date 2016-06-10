@@ -1,8 +1,9 @@
 {
   "dependencies": {
     "fuzzyset.js": "0.0.1",
-    "node-telegram-bot-api": "^0.20.1"
+    "node-telegram-bot-api": "^0.23.3"
   },
+  "private": true,
   "jscsConfig": {
     "preset": "airbnb",
     "maximumLineLength": null

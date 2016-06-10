@@ -3,6 +3,11 @@
 const FuzzySet = require('fuzzyset.js');
 
 // jscs:disable requireTrailingComma
+/**
+ * Insult reply map
+ * Key: insult, value: corresponding reply
+ * @type {Map}
+ */
 const insults = new Map([
 
   // The Secret of Monkey Island
@@ -246,14 +251,16 @@ const insults = new Map([
 ]);
 
 // jscs:enable requireTrailingComma
-
+/**
+ * FuzzySet with insult replies
+ * @type {Object}
+ */
 const fuzzy = FuzzySet([...insults.keys()]);
 
 /**
  * Checks if the query is found and returns an according reply
- *
  * @param {string} query - A query text
- * @returns {(string|undefined)} A reply or undefined if query not found
+ * @returns {(string|Sticker|undefined)} A reply or undefined if query not found
  */
 module.exports.search = function (query) {
   let match = fuzzy.get(query);
