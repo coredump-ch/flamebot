@@ -1,6 +1,6 @@
 {
   "name": "Telegram-flame-bot",
   "tagline": "The most polite bot you’ve ever seen on Telegram.",
-  "body": "# Flame Bot\r\n\r\nA Telegram bot that flames everything! Available as\r\n[@CoredumpFlameBot](https://telegram.me/CoredumpFlameBot)\r\n\r\n# Developing\r\n\r\n * Run `npm install` to install dependencies.\r\n * Copy `config.example.js` to `config.js` and add a token\r\n\r\n# Run\r\n\r\n    node bot.js\r\n\r\n",
+  "body": "# Flame Bot\r\n\r\nA Telegram bot that flames everything! Available as\r\n[@CoredumpFlameBot](https://telegram.me/CoredumpFlameBot)\r\n\r\n## Screenshots\r\n\r\n![](images/screen_salat.png)\r\n![](images/screen_scrum.png)\r\n![](images/screen_mueter.png)\r\n\r\n## Developing\r\n\r\n * Run `npm install` to install dependencies.\r\n * Copy `config.example.js` to `config.js` and add a token\r\n\r\n## Run\r\n\r\n    node bot.js\r\n\r\n",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
