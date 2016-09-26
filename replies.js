@@ -21,7 +21,7 @@ const insults = new Map([
   ],
   [
     'Ich kenne einige Affen, die haben mehr drauf als du.',
-    ['Aha, du warst also beim letzen Familientreffen.']
+    ['Aha, du warst also beim letzten Familientreffen.']
   ],
   [
     'Meine Narbe im Gesicht stammt aus einem harten Kampf!',
