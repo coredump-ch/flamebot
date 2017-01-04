@@ -12,3 +12,22 @@ A Telegram bot that flames everything! Available as
 
     node bot.js
 
+# Testimonials
+
+```
+<FlameBot> Ich hatte mal einen Hund, der war klüger als du, Heinrich.
+<Henry> HAUT DINI FRÄSSE DU HUERE VOUMONGO
+```
+
+```
+<FlameBot> Hab SoSlI’ Quch, freelancer!
+<The-Compiler> wat
+<Henry> DI HET GOPFERDAMMI KE MÖNSCH GFRAGT
+```
+
+```
+<Henry> dini fetti mueter!
+<FlameBot> HANI MUETTER GHÖRT??!
+<Henry> JA MANN
+<Henry> MUETER VERDAMMT
+```
