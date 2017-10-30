@@ -30,7 +30,7 @@ const insults = [
   'Aha, mal wieder in der Nase gebohrt, wie, %u%?',
   'Willst du mich mit deinem Geschwafel ermüden, %u%?',
   'Zu Schade, dass DAS überhaupt niemanden interessiert, %u%.',
-  'Sollt’ ich in deiner Nähe sterben, %u%, möcht’ ich, daß man mich desinfiziert!',
+  'Sollt’ ich in deiner Nähe sterben,%u%, möcht’ ich, daß man mich desinfiziert!',
   'Bist du das, %u%? Es riecht hier so nach Jauche und Dung!',
   'Ist der Blick in den Spiegel für Dich jeden Tag nicht eine Erniedrigung, %u%?',
   'Du hast soviel Sexappeal wie ein Croupier, %u%.',
