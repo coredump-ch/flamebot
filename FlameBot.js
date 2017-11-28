@@ -110,6 +110,19 @@ class FlameBot {
         return;
       }
 
+      if (/cyber/i.test(message.text)) {
+          let sticker;
+          if (Math.random() < 0.5) {
+              // CYBER ATTACKS AHEAD
+              sticker = new Sticker('CAADAgADnAADGW8XB9XpWOhkV96rAg');
+          } else {
+              // CYBER
+              sticker = new Sticker('CAADAgADlgADGW8XB1uhplTaDTPOAg');
+          }
+          this.reply(sticker, message);
+          return;
+      }
+
       this.usernamePromise.then((username) => {
         if (new RegExp(username, 'i').test(message.text)) {
           this.replyRandomInsult(message, message.from);
