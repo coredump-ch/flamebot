@@ -9,7 +9,7 @@ const Sticker = require('./Sticker.js');
  */
 const insults = [
 
-  // Inspired by Monkey island
+  // Inspired by Monkey Island
   'You fight like a dairy farmer, %u%.',
   'So you want to be a pirate, %u%, eh? You look more like a flooring inspector.',
   '%u%? That’s the most ridiculous name I’ve ever heard!',
@@ -30,13 +30,13 @@ const insults = [
   'Aha, mal wieder in der Nase gebohrt, wie, %u%?',
   'Willst du mich mit deinem Geschwafel ermüden, %u%?',
   'Zu Schade, dass DAS überhaupt niemanden interessiert, %u%.',
-  'Sollt’ ich in deiner Nähe sterben, , %u%, möcht’ ich, daß man mich desinfiziert!',
+  'Sollt’ ich in deiner Nähe sterben, %u%, möcht’ ich, dass man mich desinfiziert!',
   'Bist du das, %u%? Es riecht hier so nach Jauche und Dung!',
   'Ist der Blick in den Spiegel für Dich jeden Tag nicht eine Erniedrigung, %u%?',
   'Du hast soviel Sexappeal wie ein Croupier, %u%.',
   'Dein Geplänkel kommt nicht richtig in Schwung, %u%!',
   'Wurdest du damals von einem Schwein adoptiert, %u%?',
-  'Das ich nicht lache, %u%',
+  'Dass ich nicht lache, %u%',
   'Deine Mutter trägt ein Toupet, %u%.',
   'Dein Geruch allein reicht aus und ich wär’ kollabiert, %u%!',
   'Ich glaub’, es gibt für dich noch eine Stelle beim Varieté, %u%.',
@@ -54,8 +54,8 @@ const insults = [
   'Jeder hier kennt dich doch als unerfahrenen Dummkopf, %u%!',
   'Wirst du laut Testament morgen eingeäschert oder einbalsamiert, %u%?',
   'Himmel bewahre! Für einen Hintern wäre dein Gesicht eine Beleidigung, %u%!',
-  'Du bist so häßlich wie ein Affe in einem Negligé, %u%!',
-  'Warst Du schon immer so häßlich oder bist du mutiert, %u%?',
+  'Du bist so hässlich wie ein Affe in einem Negligé, %u%!',
+  'Warst Du schon immer so hässlich oder bist du mutiert, %u%?',
   'Haben sich deine Eltern nach deiner Geburt sterilisiert, %u%?',
   'En garde! Touché.',
   'Memmen wie dich vernasch’ ich zum Frühstück, %u%',
@@ -65,7 +65,7 @@ const insults = [
   'Dann ist alles klar, du bist deshalb so dick, %u%!',
   '%u%, sehe ich da Spuren der Angst in deinem Gesicht?',
 
-  // Not inspired by monkey island.
+  // Not inspired by Monkey Island.
   'Dini Mueter.',
 
   // Inspired by http://geekdad.com/2013/03/66-geeky-insults-you-can-use-almost-anywhere/
