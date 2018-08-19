@@ -259,17 +259,21 @@ const fuzzy = FuzzySet([...insults.keys()]);
  * @param query - A query text
  * @returns {(string|Sticker|undefined)} A reply or undefined if query not found
  */
-export function searchReply(query: string): string | Sticker | undefined {
-  let match = fuzzy.get(query);
+export function searchReply(query: string): string | Sticker | null {
+  const match = fuzzy.get(query);
   if (!match) {
-    return;
+    return null;
   }
 
-  let score = match[0][0];
+  const score = match[0][0];
   if (score > 0.5) {
-    let result = match[0][1];
-    let possibleCounters = insults.get(result);
-    return possibleCounters[Math.floor(Math.random() * possibleCounters.length)];
+    const result = match[0][1];
+    const possibleCounters = insults.get(result);
+    if (possibleCounters !== undefined) {
+      return possibleCounters[Math.floor(Math.random() * possibleCounters.length)];
+    }
   }
+
+  return null;
 };
 

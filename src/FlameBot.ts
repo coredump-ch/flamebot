@@ -71,7 +71,7 @@ export class FlameBot {
    *
    * @param message - The message to reply to
    */
-  private handleMessage(message: TelegramBot.Message) {
+  private async handleMessage(message: TelegramBot.Message) {
     // To find a sticker id: Send it to the bot in private chat
     if (message.chat.type === 'private' && message.sticker) {
       this.reply('Sticker file_id: ' + message.sticker.file_id, message);
@@ -83,6 +83,11 @@ export class FlameBot {
       for (const member of message.new_chat_members) {
         this.replyRandomInsult(message, member);
       }
+      return;
+    }
+
+    // Replies can only be sent to messages with a sender!
+    if (!message.from) {
       return;
     }
 
@@ -117,12 +122,11 @@ export class FlameBot {
       }
 
       // Mentions
-      this.usernamePromise.then((username) => {
-        if (new RegExp(username, 'i').test(message.text)) {
-          this.replyRandomInsult(message, message.from);
-          return;
-        }
-      });
+      const botUsername = await this.usernamePromise;
+      if (new RegExp(botUsername, 'i').test(message.text)) {
+        this.replyRandomInsult(message, message.from);
+        return;
+      }
     }
 
     // Random insults
