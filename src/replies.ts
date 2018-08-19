@@ -1,14 +1,13 @@
-'use strict';
+import * as FuzzySet from 'fuzzyset.js';
 
-const FuzzySet = require('fuzzyset.js');
+import {Sticker} from './Sticker';
 
-// jscs:disable requireTrailingComma
+
 /**
  * Insult reply map
  * Key: insult, value: corresponding reply
- * @type {Map}
  */
-const insults = new Map([
+const insults: Map<string, Array<string>> = new Map([
 
   // The Secret of Monkey Island
   [
@@ -250,19 +249,17 @@ const insults = new Map([
   ],
 ]);
 
-// jscs:enable requireTrailingComma
 /**
  * FuzzySet with insult replies
- * @type {Object}
  */
 const fuzzy = FuzzySet([...insults.keys()]);
 
 /**
  * Checks if the query is found and returns an according reply
- * @param {string} query - A query text
+ * @param query - A query text
  * @returns {(string|Sticker|undefined)} A reply or undefined if query not found
  */
-module.exports.search = function (query) {
+export function searchReply(query: string): string | Sticker | undefined {
   let match = fuzzy.get(query);
   if (!match) {
     return;
