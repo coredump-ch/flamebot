@@ -22,6 +22,15 @@ This will recompile the TypeScript files automatically when they change:
 
     npm run serve
 
+# Lint
+
+    npm run lint
+
+You can also install a pre-push hook to do the linting:
+
+    echo -e '#!/bin/sh\nnpm run lint' > .git/hooks/pre-push
+    chmod +x .git/hooks/pre-push
+
 # Testimonials
 
 ```

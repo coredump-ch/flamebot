@@ -1,3 +1,5 @@
+// tslint:disable:max-line-length
+
 import {Sticker} from './Sticker';
 
 /**
@@ -169,4 +171,4 @@ export function getRandomInsult(userName: string) {
   }
 
   return insult.replace(/%u%/g, userName);
-};
+}
