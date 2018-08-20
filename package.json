@@ -1,12 +1,17 @@
 {
+  "name": "telegram-flame-bot",
+  "version": "0.2.0",
+  "description": "The most polite chatbot in the world!",
+  "license": "ISC",
+  "private": true,
+  "scripts": {
+    "build": "tsc --pretty",
+    "watch": "tsc -w --pretty",
+    "serve": "node src/bot.js"
+  },
   "dependencies": {
     "fuzzyset.js": "0.0.1",
     "node-telegram-bot-api": "^0.30"
-  },
-  "private": true,
-  "jscsConfig": {
-    "preset": "airbnb",
-    "maximumLineLength": null
   },
   "devDependencies": {
     "@types/node-telegram-bot-api": "^0.30.1",

@@ -10,11 +10,17 @@ A Telegram bot that flames everything! Available as
 
 # Build
 
-    tsc
+    npm run build
+
+# Watch
+
+This will recompile the TypeScript files automatically when they change:
+
+    npm run watch
 
 # Run
 
-    node src/bot.js
+    npm run serve
 
 # Testimonials
 
