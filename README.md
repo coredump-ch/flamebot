@@ -1,5 +1,8 @@
 # Flame Bot
 
+[![Build status](https://circleci.com/gh/coredump-ch/telegram-flame-bot.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/coredump-ch/telegram-flame-bot)
+[![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://github.com/coredump-ch/telegram-flame-bot/blob/master/LICENSE)
+
 A Telegram bot that flames everything! Available as
 [@CoredumpFlameBot](https://telegram.me/CoredumpFlameBot)
 
