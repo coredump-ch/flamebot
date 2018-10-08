@@ -1,13 +1,11 @@
-'use strict';
+// tslint:disable:max-line-length
 
-const Sticker = require('./Sticker.js');
+import {Sticker} from './Sticker';
 
 /**
- * Stickers and one liner text insults
- * where '%u%' is the username
- * @type {Array.<(string|Sticker)>}
+ * Stickers and one liner text insults where '%u%' is the username.
  */
-const insults = [
+const insults: Array<string | Sticker> = [
 
   // Inspired by Monkey Island
   'You fight like a dairy farmer, %u%.',
@@ -166,12 +164,11 @@ const insults = [
  * @param {string} userName - The user's name who should be insulted
  * @returns {(string|Sticker)} A random insult text or sticker
  */
-exports.getRandomInsult = function (userName) {
+export function getRandomInsult(userName: string) {
   const insult = insults[Math.floor(Math.random() * insults.length)];
   if (insult instanceof Sticker) {
     return insult;
   }
 
   return insult.replace(/%u%/g, userName);
-};
-
+}

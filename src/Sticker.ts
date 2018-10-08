@@ -1,16 +1,14 @@
-'use strict';
-
 /**
  * A telegram sticker
  */
-class Sticker {
+export class Sticker {
+  public fileId: string;
+
   /**
    * Constructs a sticker
    * @param {string} fileId - The telegram sticker’s file_id
    */
-  constructor(fileId) {
+  constructor(fileId: string) {
     this.fileId = fileId;
   }
 }
-
-module.exports = Sticker;
