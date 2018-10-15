@@ -34,6 +34,7 @@ export class FlameBot {
    * Sets the handler to listen to messages
    */
   public start() {
+    console.info('Starting telegram-flame-bot...');
     this.telegram.on('message', (message: TelegramBot.Message) => {
       this.handleMessage(message);
     });
