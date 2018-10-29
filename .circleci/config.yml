@@ -6,7 +6,7 @@ references:
     - restore_cache:
         keys:
           - v1-dependencies-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ checksum "package.json" }}
-    - run: cp config.example.js src/config.js
+    - run: cp example.env .env
     - run: npm install
     - run: npm run build
     - save_cache:

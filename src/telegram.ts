@@ -2,12 +2,16 @@ import * as TelegramBot from 'node-telegram-bot-api';
 
 import {getRandomInsult} from './oneliners';
 import {searchReply} from './replies';
+import {Service} from './services';
 import {Sticker} from './Sticker';
 
 /**
- * The most polite bot in the world
+ * The most polite bot in the world.
+ * Telegram integration.
  */
-export class FlameBot {
+export class TelegramFlameBot implements Service {
+  private logTag = '[Telegram]';
+
   private flameRate: number;
   private telegram: TelegramBot;
 
@@ -34,7 +38,7 @@ export class FlameBot {
    * Sets the handler to listen to messages
    */
   public start() {
-    console.info('Starting telegram-flame-bot...');
+    console.info(this.logTag, 'Starting handler');
     this.telegram.on('message', (message: TelegramBot.Message) => {
       this.handleMessage(message);
     });
@@ -93,6 +97,8 @@ export class FlameBot {
 
     // Reply to messages
     if (message.text) {
+
+      // TODO: Move the following checks into single reply function
 
       // Find matching replies
       const repliesMatch = searchReply(message.text);
