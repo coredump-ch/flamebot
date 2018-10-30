@@ -88,7 +88,7 @@ export class MattermostFlameBot implements Service {
 
     // Determine reply
     const directMention = new RegExp('flame ?bot', 'i').test(payload.text);
-    const insult = handleMessage(payload.text, payload.user_name, this.flameRate, false, directMention);
+    const insult = handleMessage(payload.text, `@${payload.user_name}`, this.flameRate, false, directMention);
     if (insult !== null && isString(insult)) {
       return this.reply(res, insult);
     }
