@@ -1,5 +1,6 @@
 import * as TelegramBot from 'node-telegram-bot-api';
 
+import {handleMessage} from '../core';
 import {getRandomInsult} from '../oneliners';
 import {searchReply} from '../replies';
 import {Sticker} from '../sticker';
@@ -18,7 +19,8 @@ export class TelegramFlameBot implements Service {
   private usernamePromise: Promise<string>;
 
   /**
-   * Constructs the flame bot
+   * Constructor.
+   *
    * @param flameRate - The chance how often the bot flames back on a message (1 = 100 %)
    * @param telegram - The telegram bot API dependency
    */
@@ -35,7 +37,7 @@ export class TelegramFlameBot implements Service {
   }
 
   /**
-   * Sets the handler to listen to messages
+   * Start the Telegram integration.
    */
   public start() {
     console.info(this.logTag, 'Starting handler');
@@ -45,18 +47,23 @@ export class TelegramFlameBot implements Service {
   }
 
   /**
-   * Replies with an insult
+   * Reply with a random insult.
    *
    * @param message - The message to reply to
    * @param user - The user to insult
    */
   private replyRandomInsult(message: TelegramBot.Message, user: TelegramBot.User) {
-    const insult = getRandomInsult(user.first_name);
-    this.reply(insult, message);
+    const name = this.getName(user);
+    if (name) {
+      const insult = getRandomInsult(name);
+      this.reply(insult, message);
+    } else {
+      console.warn(this.logTag, 'Could not determine user name');
+    }
   }
 
   /**
-   * Replies to a message
+   * Reply to a message.
    *
    * @param reply - The text or Sticker to send
    * @param message - The message to reply to
@@ -95,49 +102,32 @@ export class TelegramFlameBot implements Service {
       return;
     }
 
-    // Reply to messages
-    if (message.text) {
-
-      // TODO: Move the following checks into single reply function
-
-      // Find matching replies
-      const repliesMatch = searchReply(message.text);
-      if (repliesMatch) {
-        this.reply(repliesMatch, message);
-        return;
-      }
-
-      // The mother of all jokes
-      if (/mue?tt?(er|i)/i.test(message.text)) {
-        this.reply('HANI MUETTER GHÖRT??!', message);
-        return;
-      }
-
-      // Cyber cyber
-      if (/cyber/i.test(message.text)) {
-        let sticker;
-        if (Math.random() < 0.5) {
-          // CYBER ATTACKS AHEAD
-          sticker = new Sticker('CAADAgADnAADGW8XB9XpWOhkV96rAg');
-        } else {
-          // CYBER
-          sticker = new Sticker('CAADAgADlgADGW8XB1uhplTaDTPOAg');
-        }
-        this.reply(sticker, message);
-        return;
-      }
-
-      // Mentions
-      const botUsername = await this.usernamePromise;
-      if (new RegExp(botUsername, 'i').test(message.text)) {
-        this.replyRandomInsult(message, message.from);
-        return;
-      }
+    // Replies can only be sent if the user has a name
+    const name = this.getName(message.from);
+    if (!name) {
+      return;
     }
 
-    // Random insults
-    if (Math.random() < this.flameRate) {
-      this.replyRandomInsult(message, message.from);
+    // Determine reply
+    const botUsername = await this.usernamePromise;
+    const directMention = !!message.text && new RegExp(botUsername, 'i').test(message.text);
+    const insult = handleMessage(message.text, name, this.flameRate, true, directMention);
+    if (insult !== null) {
+      this.reply(insult, message);
     }
+  }
+
+  /**
+   * Determine the user name.
+   */
+  private getName(user: TelegramBot.User): string | null {
+    if (user.first_name) {
+      return user.first_name;
+    } else if (user.username) {
+      return user.username;
+    } else if (user.last_name) {
+      return user.last_name;
+    }
+    return null;
   }
 }

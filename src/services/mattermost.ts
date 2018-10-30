@@ -1,7 +1,7 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 
-import {getRandomInsult} from '../oneliners';
+import {handleMessage} from '../core';
 import {searchReply} from '../replies';
 import {Service} from './services';
 
@@ -21,6 +21,13 @@ interface MattermostPayload {
 }
 
 /**
+ * Type guard: Make sure that the value is a string.
+ */
+function isString(val: any): val is string {
+  return typeof val === 'string';
+}
+
+/**
  * The most polite bot in the world.
  * Mattermost integration.
  */
@@ -34,7 +41,8 @@ export class MattermostFlameBot implements Service {
   private app: express.Application;
 
   /**
-   * Constructs the flame bot
+   * Constructor.
+   *
    * @param flameRate - The chance how often the bot flames back on a message (1 = 100 %)
    * @param port - The port to listen on (e.g. 8000)
    * @param token - The Mattermost hook token
@@ -52,6 +60,9 @@ export class MattermostFlameBot implements Service {
     this.route();
   }
 
+  /**
+   * Set up routes.
+   */
   private route() {
     this.app.post('/callback/mattermost/', this.callbackHandler.bind(this));
   }
@@ -75,21 +86,28 @@ export class MattermostFlameBot implements Service {
       return this.staySilent(res);
     }
 
-    // Find matching replies
-    const repliesMatch = searchReply(payload.text);
-    if (repliesMatch) {
-      return this.reply(res, repliesMatch);
+    // Determine reply
+    const directMention = new RegExp('flame ?bot', 'i').test(payload.text);
+    const insult = handleMessage(payload.text, payload.user_name, this.flameRate, false, directMention);
+    if (insult !== null && isString(insult)) {
+      return this.reply(res, insult);
     }
 
     return this.staySilent(res);
   }
 
+  /**
+   * Return an empty response that won't trigger a reply.
+   */
   private staySilent(res: express.Response): void {
     res
       .status(200)
       .send({});
   }
 
+  /**
+   * Send a reply.
+   */
   private reply(res: express.Response, text: string): void {
     res
       .status(200)
@@ -105,6 +123,9 @@ export class MattermostFlameBot implements Service {
         && payload.token === this.token;
   }
 
+  /**
+   * Start the webhook server.
+   */
   public start(): void {
     this.app.listen(this.port, () => console.info(this.logTag, `Starting server on port ${this.port}`));
   }
