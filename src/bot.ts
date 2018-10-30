@@ -11,7 +11,7 @@ dotenv.config();
 
 // Configuration
 const flameRate = 0.02;
-const port = parseInt(process.env.PORT || '8000', 10);
+const port = parseInt(process.env.FLAMEBOT_PORT || '8000', 10);
 
 // Tokens
 const telegramToken = process.env.TELEGRAM_TOKEN || '';

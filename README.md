@@ -45,6 +45,27 @@ You can also install a pre-push hook to do the linting:
     chmod +x .git/hooks/pre-push
 
 
+# Docker
+
+Run the `coredump/flamebot` image.
+
+    docker run \
+        -e FLAMEBOT_PORT=3000 \
+        -e MATTERMOST_TOKEN=asdf \
+        -e TELEGRAM_TOKEN=jklo \
+        -p 8000:8000 \
+        coredump/flamebot:latest
+
+Configuration variables (env):
+
+- `FLAMEBOT_PORT`: What port to listen on for the Mattermost hook server
+- `MATTERMOST_TOKEN`: The mattermost outgoing hook token
+- `TELEGRAM_TOKEN`: The telegram bot token
+
+The Mattermost server will listen on `:$PORT/callback/mattermost/`.
+Configure an outgoing hook that points to that URL.
+
+
 # Testimonials
 
 ```
