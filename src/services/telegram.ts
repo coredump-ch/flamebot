@@ -1,9 +1,9 @@
 import * as TelegramBot from 'node-telegram-bot-api';
 
-import {getRandomInsult} from './oneliners';
-import {searchReply} from './replies';
+import {getRandomInsult} from '../oneliners';
+import {searchReply} from '../replies';
+import {Sticker} from '../sticker';
 import {Service} from './services';
-import {Sticker} from './Sticker';
 
 /**
  * The most polite bot in the world.

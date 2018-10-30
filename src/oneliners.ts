@@ -1,6 +1,6 @@
 // tslint:disable:max-line-length
 
-import {Sticker} from './Sticker';
+import {Sticker} from './sticker';
 
 /**
  * Stickers and one liner text insults where '%u%' is the username.

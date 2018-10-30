@@ -1,6 +1,6 @@
 // Main logic
-import {MattermostFlameBot} from './mattermost';
-import {TelegramFlameBot} from './telegram';
+import {MattermostFlameBot} from './services/mattermost';
+import {TelegramFlameBot} from './services/telegram';
 
 // Telegram integration
 import * as TelegramBot from 'node-telegram-bot-api';

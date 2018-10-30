@@ -1,8 +1,8 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
 
-import {getRandomInsult} from './oneliners';
-import {searchReply} from './replies';
+import {getRandomInsult} from '../oneliners';
+import {searchReply} from '../replies';
 import {Service} from './services';
 
 interface MattermostPayload {
