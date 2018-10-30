@@ -1,7 +1,8 @@
 # Coredump Flamebot
 
-[![Build status](https://circleci.com/gh/coredump-ch/telegram-flame-bot.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/coredump-ch/telegram-flame-bot)
-[![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://github.com/coredump-ch/telegram-flame-bot/blob/master/LICENSE)
+[![CircleCI][circle-ci-badge]][circle-ci]
+[![Docker Image][docker-image-badge]][docker-image]
+[![License](https://img.shields.io/badge/License-ISC-blue.svg)](https://github.com/coredump-ch/flamebot/blob/master/LICENSE)
 
 A chatbot that flames everything! Available on Telegram as
 [@CoredumpFlameBot](https://telegram.me/CoredumpFlameBot), but it also supports
@@ -85,3 +86,10 @@ Configure an outgoing hook that points to that URL.
 <Henry> JA MANN
 <Henry> MUETER VERDAMMT
 ```
+
+
+<!-- Badges -->
+[circle-ci]: https://circleci.com/gh/coredump-ch/flamebot
+[circle-ci-badge]: https://circleci.com/gh/coredump-ch/flamebot.svg?style=shield&circle-token=:circle-token
+[docker-image]: https://hub.docker.com/r/coredump/flamebot/
+[docker-image-badge]: https://img.shields.io/badge/docker%20image-coredump%2Fflamebot-blue.svg?logo=docker
