@@ -254,7 +254,7 @@ const fuzzy = FuzzySet([...insults.keys()]);
 /**
  * Checks if the query is found and returns an according reply
  * @param query - A query text
- * @returns {(string|undefined)} A reply or undefined if query not found
+ * @returns A reply or null if query not found
  */
 export function searchReply(query: string): string | null {
   const match = fuzzy.get(query);
