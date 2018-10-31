@@ -89,8 +89,8 @@ export class MattermostFlameBot implements Service {
       return;
     }
 
-    // Ensure that text was sent
-    if (!payload.text) {
+    // Ensure that text or a file was sent
+    if (!payload.text && !payload.file_ids) {
       return this.staySilent(res);
     }
 
