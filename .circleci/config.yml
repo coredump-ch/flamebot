@@ -47,11 +47,18 @@ jobs:
       - run:
           name: Build Docker image
           command: |
-            docker build \
-              --no-cache \
-              -t coredump/flamebot:latest \
-              -t coredump/flamebot:${CIRCLE_BRANCH} \
+            if [ $CIRCLE_BRANCH = "master" ]; then
+              docker build \
+                --no-cache \
+                -t coredump/flamebot:latest \
+                -t coredump/flamebot:master \
               .
+            else
+              docker build \
+                --no-cache \
+                -t coredump/flamebot:branch-${CIRCLE_BRANCH} \
+              .
+            fi
       - deploy:
           name: Push Docker image
           command: |
@@ -72,10 +79,6 @@ workflows:
             - test-node8
             - test-node10
             - lint
-          filters:
-            branches:
-              only:
-                - master
 
   # Build every week on Monday at 04:00 am
   weekly:
