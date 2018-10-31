@@ -127,6 +127,8 @@ export class MattermostFlameBot implements Service {
    * Start the webhook server.
    */
   public start(): void {
-    this.app.listen(this.port, () => console.info(this.logTag, `Starting server on port ${this.port}`));
+    this.app.listen(this.port, () => {
+      console.info(this.logTag, `Starting server on port ${this.port} with flame rate ${this.flameRate}`);
+    });
   }
 }

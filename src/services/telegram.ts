@@ -40,7 +40,7 @@ export class TelegramFlameBot implements Service {
    * Start the Telegram integration.
    */
   public start() {
-    console.info(this.logTag, 'Starting handler');
+    console.info(this.logTag, `Starting handler with flame rate ${this.flameRate}`);
     this.telegram.on('message', (message: TelegramBot.Message) => {
       this.handleMessage(message);
     });

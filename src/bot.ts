@@ -10,13 +10,16 @@ import * as dotenv from 'dotenv';
 dotenv.config();
 
 // Configuration
-const flameRate = 0.02;
-const port = parseInt(process.env.FLAMEBOT_PORT || '8000', 10);
-
-// Tokens
 const telegramToken = process.env.TELEGRAM_TOKEN || '';
 const mattermostToken = process.env.MATTERMOST_TOKEN || '';
+const port = parseInt(process.env.FLAMEBOT_PORT || '8000', 10);
+const flameRate = parseFloat(process.env.FLAMEBOT_FLAME_RATE || '0.03');
 
+// Validate config
+if (flameRate < 0 || flameRate > 1) {
+  console.error('Flame rate must be between 0 and 1!');
+  process.exit(1);
+}
 if (telegramToken.length === 0) {
   console.error('Please set TELEGRAM_TOKEN env var');
   process.exit(1);
