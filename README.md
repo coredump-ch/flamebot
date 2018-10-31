@@ -52,20 +52,23 @@ Run the `coredump/flamebot` image.
 
     docker run \
         -e FLAMEBOT_PORT=3000 \
-        -e FLAMEBOT_FLAME_RATE=0.03 \
         -e MATTERMOST_TOKEN=asdf \
         -e TELEGRAM_TOKEN=jklo \
         -p 8000:8000 \
         coredump/flamebot:latest
 
-Configuration variables (env):
+Required configuration variables (env):
 
-- `FLAMEBOT_PORT`: What port to listen on for the Mattermost hook server
-- `FLAMEBOT_FLAME_RATE`: The flame rate between 0 (never flame) and 1 (always flame)
 - `MATTERMOST_TOKEN`: The mattermost outgoing hook token
 - `TELEGRAM_TOKEN`: The telegram bot token
 
-The Mattermost server will listen on `:$PORT/callback/mattermost/`.
+Optional configuration variables (env):
+
+- `FLAMEBOT_PORT`: What port to listen on for the Mattermost hook server (default `8000`)
+- `FLAMEBOT_DEBUG`: Whether to enable debug logging, either "true" or "false" (default `false`)
+- `FLAMEBOT_FLAME_RATE`: The flame rate between "0" (never flame) and "1" (always flame) (default `0.03`)
+
+The Mattermost server will listen on `:$FLAMEBOT_PORT/callback/mattermost/`.
 Configure an outgoing hook that points to that URL.
 
 

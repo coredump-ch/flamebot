@@ -36,6 +36,7 @@ export class MattermostFlameBot implements Service {
 
   private flameRate: number;
   private port: number;
+  private debug: boolean;
   private token: string;
 
   private app: express.Application;
@@ -45,13 +46,15 @@ export class MattermostFlameBot implements Service {
    *
    * @param flameRate - The chance how often the bot flames back on a message (1 = 100 %)
    * @param port - The port to listen on (e.g. 8000)
+   * @param debug - Whether to log debug information
    * @param token - The Mattermost hook token
    */
-  constructor(flameRate: number, port: number, token: string) {
+  constructor(flameRate: number, port: number, debug: boolean, token: string) {
     this.flameRate = flameRate;
     this.app = express();
     this.port = port;
     this.token = token;
+    this.debug = debug;
 
     // Set up JSON body parsing
     this.app.use(bodyParser.json());
@@ -71,10 +74,15 @@ export class MattermostFlameBot implements Service {
    * Handle incoming callbacks.
    */
   private callbackHandler(req: express.Request, res: express.Response) {
+    if (this.debug) {
+      console.debug(this.logTag, '=>', req.method, req.body);
+    }
+
     const payload: MattermostPayload = req.body;
 
     // Validate token
     if (!this.tokenValid(payload)) {
+      console.info(this.logTag, '<= HTTP 400 (invalid token)');
       res
         .status(400)
         .send('Invalid token');
@@ -100,6 +108,9 @@ export class MattermostFlameBot implements Service {
    * Return an empty response that won't trigger a reply.
    */
   private staySilent(res: express.Response): void {
+    if (this.debug) {
+      console.info(this.logTag, '<= HTTP 200 (no reply)');
+    }
     res
       .status(200)
       .send({});
@@ -109,6 +120,7 @@ export class MattermostFlameBot implements Service {
    * Send a reply.
    */
   private reply(res: express.Response, text: string): void {
+    console.info(this.logTag, '<= HTTP 200 (text reply)');
     res
       .status(200)
       .send({text: text, response_type: 'comment'});

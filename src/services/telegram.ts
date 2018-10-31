@@ -22,9 +22,10 @@ export class TelegramFlameBot implements Service {
    * Constructor.
    *
    * @param flameRate - The chance how often the bot flames back on a message (1 = 100 %)
+   * @param debug - Whether to log debug information
    * @param telegram - The telegram bot API dependency
    */
-  constructor(flameRate: number, telegram: TelegramBot) {
+  constructor(flameRate: number, debug: boolean, telegram: TelegramBot) {
     this.flameRate = flameRate;
     this.telegram = telegram;
 
