@@ -1,7 +1,5 @@
 import * as FuzzySet from 'fuzzyset.js';
 
-import {Sticker} from './Sticker';
-
 /**
  * Insult reply map
  * Key: insult, value: corresponding reply
@@ -256,9 +254,9 @@ const fuzzy = FuzzySet([...insults.keys()]);
 /**
  * Checks if the query is found and returns an according reply
  * @param query - A query text
- * @returns {(string|Sticker|undefined)} A reply or undefined if query not found
+ * @returns A reply or null if query not found
  */
-export function searchReply(query: string): string | Sticker | null {
+export function searchReply(query: string): string | null {
   const match = fuzzy.get(query);
   if (!match) {
     return null;

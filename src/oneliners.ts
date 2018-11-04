@@ -1,11 +1,11 @@
 // tslint:disable:max-line-length
 
-import {Sticker} from './Sticker';
+import {Sticker} from './sticker';
 
 /**
  * Stickers and one liner text insults where '%u%' is the username.
  */
-const insults: Array<string | Sticker> = [
+const insults: string[] = [
 
   // Inspired by Monkey Island
   'You fight like a dairy farmer, %u%.',
@@ -138,7 +138,8 @@ const insults: Array<string | Sticker> = [
   '凸(-_-)凸',
   '╭∩╮(-_-)╭∩╮',
   '(╯°□°）╯︵ ┻━┻',
-
+];
+const stickers: Sticker[] = [
   // stickers
   new Sticker('BQADBAADIAADyIsGAAGeqFpovvSWiwI'), // Julius Caesar 👎
   new Sticker('BQADBAADPwADyIsGAAFyYVwK5nqWFQI'), // Elvis Presley 😂
@@ -160,15 +161,36 @@ const insults: Array<string | Sticker> = [
 ];
 
 /**
- * Returns a random insult
+ * Returns a random insult (text or sticker).
+ *
  * @param {string} userName - The user's name who should be insulted
  * @returns {(string|Sticker)} A random insult text or sticker
  */
-export function getRandomInsult(userName: string) {
-  const insult = insults[Math.floor(Math.random() * insults.length)];
+export function getRandomInsult(userName: string): string | Sticker {
+  const totalLength = insults.length + stickers.length;
+  const index = Math.floor(Math.random() * totalLength);
+
+  let insult: string | Sticker;
+  if (index < insults.length) {
+    insult = insults[index];
+  } else {
+    insult = stickers[index - insults.length];
+  }
+
   if (insult instanceof Sticker) {
     return insult;
   }
+  return insult.replace(/%u%/g, userName);
+}
 
+/**
+ * Returns a random insult (text only).
+ *
+ * @param userName - The user's name who should be insulted
+ * @returns A random insult text
+ */
+export function getRandomTextInsult(userName: string): string {
+  const index = Math.floor(Math.random() * insults.length);
+  const insult = insults[index];
   return insult.replace(/%u%/g, userName);
 }
