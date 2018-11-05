@@ -9,6 +9,15 @@ A chatbot that flames everything! Available on Telegram as
 Mattermost.
 
 
+# Features
+
+These are the tasteful features of Flamebot:
+
+ * Respond with insults to group chat messages with a certain probability
+ * Respond to Monkey Island insult sword fighting quotes
+ * Make new members in your chat group feel welcome by insulting them (Telegram only)
+
+
 # Usage
 
 Setup:
