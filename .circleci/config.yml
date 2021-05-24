@@ -79,6 +79,7 @@ workflows:
             - test-node8
             - test-node10
             - lint
+          context: Docker Hub coredumpuploader
 
   # Build every week on Monday at 04:00 am
   weekly:
@@ -90,4 +91,5 @@ workflows:
               only:
                 - master
     jobs:
-      - build
+      - build:
+          context: Docker Hub coredumpuploader
