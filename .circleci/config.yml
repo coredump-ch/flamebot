@@ -25,12 +25,12 @@ commands:
           name: Early return if this build is from a forked PR
           command: |
             echo "CIRCLE_PR_NUMBER: $CIRCLE_PR_NUMBER"
-            echo "CIRCLECI_BRANCH: $CIRCLECI_BRANCH"
+            echo "CIRCLE_BRANCH: $CIRCLE_BRANCH"
             if [ -n "$CIRCLE_PR_NUMBER" ]; then
               echo "Nothing to do for forked PRs, so marking this step successful"
               circleci step halt
             fi
-            case "$CIRCLECI_BRANCH" in
+            case "$CIRCLE_BRANCH" in
               "dependabot/"*)
                 echo "Nothing to do for dependabot PRs, so marking this step successful"
                 circleci step halt
