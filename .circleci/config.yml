@@ -56,7 +56,7 @@ jobs:
             else
               docker build \
                 --no-cache \
-                -t coredump/flamebot:branch-${CIRCLE_BRANCH} \
+                -t coredump/flamebot:branch-${CIRCLE_BRANCH//\//-} \
               .
             fi
       - deploy:
