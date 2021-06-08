@@ -5,7 +5,6 @@ import * as FuzzySet from 'fuzzyset.js';
  * Key: insult, value: corresponding reply
  */
 const insults: Map<string, string[]> = new Map([
-
   // The Secret of Monkey Island English
   [
     'You fight like a dairy Farmer!',
@@ -47,10 +46,7 @@ const insults: Map<string, string[]> = new Map([
     'There are no words for how disgusting you are.',
     ['Yes there are. You just never learned them.'],
   ],
-  [
-    'You make me want to puke.',
-    ['You make me think somebody already did.'],
-  ],
+  ['You make me want to puke.', ['You make me think somebody already did.']],
   [
     'My handkerchief will wipe up your blood!',
     ['So you got that job as janitor, after all.'],
@@ -141,98 +137,127 @@ const insults: Map<string, string[]> = new Map([
   //  The Curse of Monkey Island
   [
     'Bis jetzt wurde jeder Gegner von mir eliminiert!',
-    ['Das war ja auch leicht, dein Atem hat sie paralysiert.',
-    'Ganze Inselreiche haben vor mir kapituliert.'],
+    [
+      'Das war ja auch leicht, dein Atem hat sie paralysiert.',
+      'Ganze Inselreiche haben vor mir kapituliert.',
+    ],
   ],
 
   [
     'Wirst du laut Testament eingeäschert oder einbalsamiert?',
-    ['Sollt’ ich in deiner Nähe sterben, möcht’ ich, daß man mich desinfiziert!',
-    'Ich lasse dir die Wahl: erdolcht, erhängt oder guillotiniert.'],
+    [
+      'Sollt’ ich in deiner Nähe sterben, möcht’ ich, daß man mich desinfiziert!',
+      'Ich lasse dir die Wahl: erdolcht, erhängt oder guillotiniert.',
+    ],
   ],
 
   [
     'Dich zu töten wäre eine legale Beseitigung!',
-    ['Dich zu töten wäre dann eine legale Reinigung!',
-    'Bist du das? Es riecht hier so nach Jauche und Dung!'],
+    [
+      'Dich zu töten wäre dann eine legale Reinigung!',
+      'Bist du das? Es riecht hier so nach Jauche und Dung!',
+    ],
   ],
 
   [
     'Himmel bewahre! Für einen Hintern wäre dein Gesicht eine Beleidigung!',
-    ['In Formaldehyd aufbewahrt trügst du bei zu meiner Erheiterung!',
-    'Ist der Blick in den Spiegel für Dich jeden Tag nicht eine Erniedrigung?'],
+    [
+      'In Formaldehyd aufbewahrt trügst du bei zu meiner Erheiterung!',
+      'Ist der Blick in den Spiegel für Dich jeden Tag nicht eine Erniedrigung?',
+    ],
   ],
 
   [
     'Du bist so häßlich wie ein Affe in einem Negligé!',
-    ['Hoffentlich zerrst du mich nicht gleich ins Separée!',
-    'Du hast soviel Sexappeal wie ein Croupier.'],
+    [
+      'Hoffentlich zerrst du mich nicht gleich ins Separée!',
+      'Du hast soviel Sexappeal wie ein Croupier.',
+    ],
   ],
 
   [
     'Mein Herz rast, denk’ ich an deine Beseitigung!',
-    ['Dann wäre koffeinfreier Kaffee ein erster Schritt zur Läuterung!',
-    'Dein Geplänkel kommt nicht richtig in Schwung!'],
+    [
+      'Dann wäre koffeinfreier Kaffee ein erster Schritt zur Läuterung!',
+      'Dein Geplänkel kommt nicht richtig in Schwung!',
+    ],
   ],
 
   [
     'Warst Du schon immer so häßlich oder bist du mutiert?',
-    ['Da hat sich wohl dein Spiegelbild in meinem Säbel reflektiert!',
-    'Wurdest du damals von einem Schwein adoptiert?'],
+    [
+      'Da hat sich wohl dein Spiegelbild in meinem Säbel reflektiert!',
+      'Wurdest du damals von einem Schwein adoptiert?',
+    ],
   ],
 
   [
     'Haben sich deine Eltern nach deiner Geburt sterilisiert?',
-    ['Zumindest hat man meine identifiziert!',
-    'Du bist eine Schande für deine Gattung, so dilletiert.'],
+    [
+      'Zumindest hat man meine identifiziert!',
+      'Du bist eine Schande für deine Gattung, so dilletiert.',
+    ],
   ],
 
   [
     'Ich spieß’ Dich auf wie eine Sau am Buffet!',
-    ['Wenn ich mit DIR fertig bin, bist du nur noch Filet!',
-    'Auch wenn du es nicht glaubst, aus dir mach ich Haschee.'],
+    [
+      'Wenn ich mit DIR fertig bin, bist du nur noch Filet!',
+      'Auch wenn du es nicht glaubst, aus dir mach ich Haschee.',
+    ],
   ],
 
   [
     'Überall in der Karibik wird mein Name respektiert!',
-    ['Zu schade, daß das hier niemanden tangiert!',
-    'Durch meine Fechtkunst bin ich zum Sieger prädestiniert.'],
+    [
+      'Zu schade, daß das hier niemanden tangiert!',
+      'Durch meine Fechtkunst bin ich zum Sieger prädestiniert.',
+    ],
   ],
 
   [
     'Niemand kann mich stoppen, mich - den Schrecken der See!',
-    ['Ich könnte es tun, hättest du nur ein Atemspray!',
-    'Es mit mir aufzunehmen gleicht einer Odyssee.'],
+    [
+      'Ich könnte es tun, hättest du nur ein Atemspray!',
+      'Es mit mir aufzunehmen gleicht einer Odyssee.',
+    ],
   ],
 
   [
     'Ich werde dich richten, und es gibt kein Plädoyer!',
-    ['Das ich nicht lache! Du und welche Armee?',
-    'Jetzt werde ich dich erstechen, da hilft kein Protegé!'],
+    [
+      'Das ich nicht lache! Du und welche Armee?',
+      'Jetzt werde ich dich erstechen, da hilft kein Protegé!',
+    ],
   ],
 
   [
     'En garde! Touché.',
-    ['Oh, das ist ein solch übles Klischee!',
-    'Deine Mutter trägt ein Toupet.'],
+    ['Oh, das ist ein solch übles Klischee!', 'Deine Mutter trägt ein Toupet.'],
   ],
 
   [
     'Ein jeder hat vor meiner Schwertkunst kapituliert!',
-    ['Dein Geruch allein reicht aus und ich wär’ kollabiert!',
-    'Ich weiß nicht, welche meiner Eigenschaften dir am meisten imponiert.'],
+    [
+      'Dein Geruch allein reicht aus und ich wär’ kollabiert!',
+      'Ich weiß nicht, welche meiner Eigenschaften dir am meisten imponiert.',
+    ],
   ],
 
   [
     'Fühl’ ich den Stahl in der Hand, bin ich in meinem Metier!',
-    ['Ich glaub’, es gibt für dich noch eine Stelle beim Varieté.',
-    'Ich laufe auf glühenden Kohlen und Barfuß im Schnee.'],
+    [
+      'Ich glaub’, es gibt für dich noch eine Stelle beim Varieté.',
+      'Ich laufe auf glühenden Kohlen und Barfuß im Schnee.',
+    ],
   ],
 
   [
     'Mein Mienenspiel zeigt dir meine Mißbilligung!',
-    ['Für dein Gesicht bekommst du ’ne Begnadigung!',
-    'Mein Antlitz zeugt von edler Abstammung!'],
+    [
+      'Für dein Gesicht bekommst du ’ne Begnadigung!',
+      'Mein Antlitz zeugt von edler Abstammung!',
+    ],
   ],
 
   // Escape from Monkey Island
@@ -281,10 +306,7 @@ const insults: Map<string, string[]> = new Map([
     ['Das sind große Worte für ’nen Kerl ohne Grips!'],
   ],
 
-  [
-    'Hey, schau mal da drüben!',
-    ['Ja, ja, ich weiß, ein dreiköpfiger Affe!'],
-  ],
+  ['Hey, schau mal da drüben!', ['Ja, ja, ich weiß, ein dreiköpfiger Affe!']],
 
   [
     'Du bist das hässlichste Wesen, das ich jemals sah',
@@ -333,7 +355,9 @@ export function searchReply(query: string): string | null {
     const result = match[0][1];
     const possibleCounters = insults.get(result);
     if (possibleCounters !== undefined) {
-      return possibleCounters[Math.floor(Math.random() * possibleCounters.length)];
+      return possibleCounters[
+        Math.floor(Math.random() * possibleCounters.length)
+      ];
     }
   }
 

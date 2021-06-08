@@ -83,9 +83,7 @@ export class MattermostFlameBot implements Service {
     // Validate token
     if (!this.tokenValid(payload)) {
       console.info(this.logTag, '<= HTTP 400 (invalid token)');
-      res
-        .status(400)
-        .send('Invalid token');
+      res.status(400).send('Invalid token');
       return;
     }
 
@@ -96,7 +94,13 @@ export class MattermostFlameBot implements Service {
 
     // Determine reply
     const directMention = new RegExp('flame ?bot', 'i').test(payload.text);
-    const insult = handleMessage(payload.text, `@${payload.user_name}`, this.flameRate, false, directMention);
+    const insult = handleMessage(
+      payload.text,
+      `@${payload.user_name}`,
+      this.flameRate,
+      false,
+      directMention,
+    );
     if (insult !== null && isString(insult)) {
       return this.reply(res, insult);
     }
@@ -111,9 +115,7 @@ export class MattermostFlameBot implements Service {
     if (this.debug) {
       console.info(this.logTag, '<= HTTP 200 (no reply)');
     }
-    res
-      .status(200)
-      .send({});
+    res.status(200).send({});
   }
 
   /**
@@ -121,18 +123,18 @@ export class MattermostFlameBot implements Service {
    */
   private reply(res: express.Response, text: string): void {
     console.info(this.logTag, '<= HTTP 200 (text reply)');
-    res
-      .status(200)
-      .send({text: text, response_type: 'comment'});
+    res.status(200).send({text: text, response_type: 'comment'});
   }
 
   /**
    * Validate the token.
    */
   private tokenValid(payload: MattermostPayload) {
-    return payload.token !== undefined
-        && payload.token !== null
-        && payload.token === this.token;
+    return (
+      payload.token !== undefined &&
+      payload.token !== null &&
+      payload.token === this.token
+    );
   }
 
   /**
@@ -140,7 +142,10 @@ export class MattermostFlameBot implements Service {
    */
   public start(): void {
     this.app.listen(this.port, () => {
-      console.info(this.logTag, `Starting server on port ${this.port} with flame rate ${this.flameRate}`);
+      console.info(
+        this.logTag,
+        `Starting server on port ${this.port} with flame rate ${this.flameRate}`,
+      );
     });
   }
 }

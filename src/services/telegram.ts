@@ -41,7 +41,10 @@ export class TelegramFlameBot implements Service {
    * Start the Telegram integration.
    */
   public start() {
-    console.info(this.logTag, `Starting handler with flame rate ${this.flameRate}`);
+    console.info(
+      this.logTag,
+      `Starting handler with flame rate ${this.flameRate}`,
+    );
     this.telegram.on('message', (message: TelegramBot.Message) => {
       this.handleMessage(message);
     });
@@ -53,7 +56,10 @@ export class TelegramFlameBot implements Service {
    * @param message - The message to reply to
    * @param user - The user to insult
    */
-  private replyRandomInsult(message: TelegramBot.Message, user: TelegramBot.User) {
+  private replyRandomInsult(
+    message: TelegramBot.Message,
+    user: TelegramBot.User,
+  ) {
     const name = this.getName(user);
     if (name) {
       const insult = getRandomInsult(name);
@@ -72,9 +78,13 @@ export class TelegramFlameBot implements Service {
   private reply(reply: string | Sticker, message: TelegramBot.Message) {
     if (reply instanceof Sticker) {
       const stickerFileId = reply.fileId;
-      this.telegram.sendSticker(message.chat.id, stickerFileId, { reply_to_message_id: message.message_id });
+      this.telegram.sendSticker(message.chat.id, stickerFileId, {
+        reply_to_message_id: message.message_id,
+      });
     } else {
-      this.telegram.sendMessage(message.chat.id, reply, { reply_to_message_id: message.message_id });
+      this.telegram.sendMessage(message.chat.id, reply, {
+        reply_to_message_id: message.message_id,
+      });
     }
   }
 
@@ -111,8 +121,15 @@ export class TelegramFlameBot implements Service {
 
     // Determine reply
     const botUsername = await this.usernamePromise;
-    const directMention = !!message.text && new RegExp(botUsername, 'i').test(message.text);
-    const insult = handleMessage(message.text, name, this.flameRate, true, directMention);
+    const directMention =
+      !!message.text && new RegExp(botUsername, 'i').test(message.text);
+    const insult = handleMessage(
+      message.text,
+      name,
+      this.flameRate,
+      true,
+      directMention,
+    );
     if (insult !== null) {
       this.reply(insult, message);
     }
