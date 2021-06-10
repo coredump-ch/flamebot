@@ -6,7 +6,6 @@ import {Sticker} from './sticker';
  * Stickers and one liner text insults where '%u%' is the username.
  */
 const insults: string[] = [
-
   // Inspired by Monkey Island
   'You fight like a dairy farmer, %u%.',
   'So you want to be a pirate, %u%, eh? You look more like a flooring inspector.',

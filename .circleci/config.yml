@@ -60,6 +60,15 @@ jobs:
           key: v1-dependencies-{{ .Environment.CIRCLE_JOB }}-{{ arch }}-{{ checksum "package.json" }}
           paths:
             - node_modules
+
+  prettier:
+    docker:
+      - image: circleci/node:10
+    steps:
+      - checkout
+      - run: npm install --also=dev
+      - run: npx prettier --check **/*.ts
+
   build:
     docker:
       - image: docker:stable
@@ -97,6 +106,7 @@ workflows:
       - test-node8
       - test-node10
       - lint
+      - prettier
       - build:
           requires:
             - test-node8

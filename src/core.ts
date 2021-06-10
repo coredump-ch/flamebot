@@ -19,7 +19,6 @@ export function handleMessage(
   supportStickers: boolean,
   directMention: boolean,
 ): string | Sticker | null {
-
   // Prepare random insult
   let randomInsult;
   if (supportStickers) {
@@ -29,7 +28,6 @@ export function handleMessage(
   }
 
   if (text !== null && text !== undefined) {
-
     // Find matching reply
     const matchingReply = searchReply(text);
     if (matchingReply) {
@@ -58,7 +56,6 @@ export function handleMessage(
     if (directMention) {
       return randomInsult;
     }
-
   }
 
   // Random insults

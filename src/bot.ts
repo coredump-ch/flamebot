@@ -30,9 +30,14 @@ if (mattermostToken.length === 0) {
   process.exit(1);
 }
 
-const telegram = new TelegramBot(telegramToken, { polling: true });
+const telegram = new TelegramBot(telegramToken, {polling: true});
 const telegramFlameBot = new TelegramFlameBot(flameRate, debug, telegram);
-const mattermostFlameBot = new MattermostFlameBot(flameRate, port, debug, mattermostToken);
+const mattermostFlameBot = new MattermostFlameBot(
+  flameRate,
+  port,
+  debug,
+  mattermostToken,
+);
 
 if (debug) {
   console.debug('Enabled debug mode');
