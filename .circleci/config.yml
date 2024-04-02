@@ -38,17 +38,17 @@ commands:
             esac
 
 jobs:
-  test-node8:
+  test-node18:
     docker:
-      - image: circleci/node:8
+      - image: cimg/node:18.18
     steps: *test-steps
-  test-node10:
+  test-node20:
     docker:
-      - image: circleci/node:10
+      - image: cimg/node:20.3
     steps: *test-steps
   lint:
     docker:
-      - image: circleci/node:10
+      - image: cimg/node:18.18
     steps:
       - checkout
       - restore_cache:
@@ -63,7 +63,7 @@ jobs:
 
   prettier:
     docker:
-      - image: circleci/node:10
+      - image: cimg/node:18.18
     steps:
       - checkout
       - run: npm install --also=dev
@@ -103,14 +103,14 @@ workflows:
   # Build on push
   push:
     jobs:
-      - test-node8
-      - test-node10
+      - test-node18
+      - test-node20
       - lint
       - prettier
       - build:
           requires:
-            - test-node8
-            - test-node10
+            - test-node18
+            - test-node20
             - lint
           context: Docker Hub coredumpuploader
 
